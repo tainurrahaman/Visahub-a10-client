@@ -3,10 +3,14 @@ import logo from "../assets/logo.webp";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 ">
+    <div className="navbar px-0 bg-base-100">
       <div className="navbar-start gap-1 md:gap-2">
         <div className="dropdown ">
-          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn px-0 btn-ghost md:hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
@@ -30,7 +34,7 @@ const Navbar = () => {
             <Link to="/allVisas">All Visas</Link>
           </ul>
         </div>
-        <div className="max-w-6 md:max-w-10  object-center">
+        <div className="max-w-6 md:max-w-10 object-center">
           <img src={logo} alt="Website Logo" className="rounded-full" />
         </div>
         <a className="text-[#034833] font-bold text-md md:text-3xl">VisaHub</a>
