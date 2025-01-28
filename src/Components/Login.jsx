@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Navbar from "./Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -10,8 +16,39 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(email, password);
+    loginUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        const lastSignInTime = user.metadata.lastSignInTime;
+        const creationTime = user.metadata.creationTime;
+        const loginUser = { lastSignInTime, creationTime, email };
+
+        fetch("http://localhost:5000/users", {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(loginUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.modifiedCount > 0) {
+              Swal.fire({
+                title: "Login Successful",
+                icon: "success",
+                draggable: true,
+              });
+            }
+            navigate("/");
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
   return (
     <div className="w-11/12 mx-auto my-4">
       <Navbar></Navbar>

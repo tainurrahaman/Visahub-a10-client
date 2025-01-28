@@ -8,16 +8,16 @@ const Banner = () => {
     <div className="mt-3 md:mt-5 lg:mt-8 ">
       <div className="carousel w-full">
         <div id="item1" className="carousel-item w-full">
-          <img src={banner4} class="w-full rounded-md" />
+          <img src={banner4} className="w-full rounded-md" />
         </div>
         <div id="item2" className="carousel-item w-full">
-          <img src={banner2} class="w-full rounded-md" />
+          <img src={banner2} className="w-full rounded-md" />
         </div>
         <div id="item3" className="carousel-item w-full">
-          <img src={banner3} class="w-full rounded-md" />
+          <img src={banner3} className="w-full rounded-md" />
         </div>
         <div id="item4" className="carousel-item w-full">
-          <img src={banner1} class="w-full rounded-md" />
+          <img src={banner1} className="w-full rounded-md" />
         </div>
       </div>
       <div className="flex w-full justify-center gap-2 py-2">

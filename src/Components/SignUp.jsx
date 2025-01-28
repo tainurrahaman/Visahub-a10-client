@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Navbar from "./Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleSignUp = (e) => {
     e.preventDefault();
 
@@ -13,6 +19,35 @@ const SignUp = () => {
     const password = form.password.value;
 
     console.log(name, photo, email, password);
+    const newUser = { name, photo, email };
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            navigate("/");
+            if (data.insertedId) {
+              Swal.fire({
+                title: "Registration Successful",
+                icon: "success",
+                draggable: true,
+              });
+            }
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -52,7 +87,7 @@ const SignUp = () => {
                     Password
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     name="password"
                     className="input w-full"
                     placeholder="Password"
