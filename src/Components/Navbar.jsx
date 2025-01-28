@@ -1,7 +1,22 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.webp";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import { ToastContainer } from "react-toastify";
 
 const Navbar = () => {
+  const { user, logoutUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        toast("Successfully Logout");
+      })
+      .catch((err) => {
+        toast(err.message);
+      });
+  };
+
   return (
     <div className="navbar px-0 bg-base-100">
       <div className="navbar-start gap-1 md:gap-2">
@@ -43,13 +58,25 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 space-x-3 font-semibold">
           <Link to="/">Home</Link>
           <Link to="/allVisas">All Visas</Link>
+          {user ? <Link to="/addVisa">Add Visa</Link> : ""}
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn">
-          Login
-        </Link>
+        {user?.email ? (
+          <Link
+            onClick={handleLogout}
+            to="/"
+            className="btn bg-[#034833] text-white"
+          >
+            Logout
+          </Link>
+        ) : (
+          <Link to="/login" className=" btn bg-[#034833] text-white">
+            Login
+          </Link>
+        )}
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
