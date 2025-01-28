@@ -1,39 +1,189 @@
-import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const VisaDetails = () => {
-  const { id } = useParams(); // Access the ID from the URL
-  const location = useLocation(); // Access the passed state
-  const visa = location.state; // Visa data from state
+  const { user } = useContext(AuthContext);
+  const { id } = useParams();
+  const location = useLocation();
+  const visa = location.state;
+  const navigate = useNavigate();
+  const handleVisaApplication = (e) => {
+    e.preventDefault();
+    document.getElementById("my_modal_5").close();
+
+    const form = e.target;
+    const email = form.email.value;
+    const firstName = form.firstName.value;
+    const lastName = form.lastName.value;
+    const appliedDate = form.appliedDate.value;
+    const fee = form.fee.value;
+
+    console.log(email, firstName, lastName, appliedDate, fee);
+    const visaApply = { email, firstName, lastName, appliedDate, fee };
+    fetch("http://localhost:5000/visaApply", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(visaApply),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Your application is Successful!",
+            icon: "success",
+            draggable: true,
+          });
+        }
+        navigate("/allVisas");
+      });
+    form.reset();
+  };
 
   return (
     <div className="w-11/12 mx-auto my-4">
       <Navbar />
-      <div className="bg-gray-100 p-6 rounded-md shadow-md">
+      <div className=" p-6 rounded-md ">
         {visa ? (
-          <>
-            <h1 className="text-3xl font-bold text-gray-800 mb-4">
-              Visa Details for {visa.name}
-            </h1>
-            <img
-              src={visa.photo}
-              alt={visa.name}
-              className="rounded-md mb-4 w-full max-w-md mx-auto"
-            />
-            <p className="text-lg">
-              <strong>Country:</strong> {visa.name}
-            </p>
-            <p className="text-lg">
-              <strong>Validity:</strong> {visa.validity}
-            </p>
-            <p className="text-lg">
-              <strong>Fee:</strong> {visa.fee}
-            </p>
-            <p className="text-lg">
-              <strong>Description:</strong> {visa.description}
-            </p>
-          </>
+          <div className="w-full md:w-2/3 lg:w-1/2 mx-auto bg-gray-100 p-0 md:p-5 rounded-lg">
+            {" "}
+            <div className="w-full flex flex-col md:flex-row bg-white shadow-lg rounded-lg gap-5 p-3 md:p-5">
+              <div className="w-1/2 mx-auto">
+                <img
+                  className="w-full rounded-md"
+                  src={visa.photo}
+                  alt={`${visa.name} Visa`}
+                />
+              </div>
+              <div className=" px-5">
+                <h2 className="text-xl md:text-3xl font-bold mb-2">
+                  {visa.name}
+                </h2>
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Visa Type:</span> {visa.visa}
+                </p>
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Processing Time:</span>{" "}
+                  {visa.time}
+                </p>
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Description:</span>{" "}
+                  {visa.description}
+                </p>
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Age Restriction:</span>{" "}
+                  {visa.age} years
+                </p>
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Validity:</span>{" "}
+                  {visa.validity}
+                </p>
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Application Method:</span>{" "}
+                  {visa.method}
+                </p>
+                <p className="text-gray-600 mb-4">
+                  <span className="font-semibold">Fee:</span> ${visa.fee}
+                </p>
+                <button
+                  onClick={() =>
+                    document.getElementById("my_modal_5").showModal()
+                  }
+                  className="w-full btn bg-[#034833] text-white py-2 px-4 font-semibold rounded-lg hover:bg-green-700"
+                >
+                  Apply for Visa
+                </button>
+                <dialog
+                  id="my_modal_5"
+                  className="w-3/4 md:w-full mx-auto modal  sm:modal-middle"
+                >
+                  <div className="modal-box p-2 md:p-5">
+                    <div className="modal-action mt-0">
+                      <div className="w-full max-w-md mx-auto bg-white shadow-md rounded-lg p-2 md:p-6 ">
+                        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
+                          Visa Application Form
+                        </h2>
+                        <form onSubmit={handleVisaApplication} method="dialog">
+                          <div className="mb-4">
+                            <label className="block text-gray-700 font-semibold mb-2">
+                              Email
+                            </label>
+                            <input
+                              type="email"
+                              name="email"
+                              defaultValue={user.email}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                            />
+                          </div>
+
+                          <div className="mb-4">
+                            <label className="block text-gray-700 font-semibold mb-2">
+                              First Name
+                            </label>
+                            <input
+                              type="text"
+                              name="firstName"
+                              placeholder="Enter your first name"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                              required
+                            />
+                          </div>
+
+                          <div className="mb-4">
+                            <label className="block text-gray-700 font-semibold mb-2">
+                              Last Name
+                            </label>
+                            <input
+                              type="text"
+                              name="lastName"
+                              placeholder="Enter your last name"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                              required
+                            />
+                          </div>
+
+                          <div className="mb-4">
+                            <label className="block text-gray-700 font-semibold mb-2">
+                              Applied Date
+                            </label>
+                            <input
+                              type="date"
+                              name="appliedDate"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                            />
+                          </div>
+
+                          <div className="mb-4">
+                            <label className="block text-gray-700 font-semibold mb-2">
+                              Fee
+                            </label>
+                            <input
+                              type="number"
+                              name="fee"
+                              defaultValue={visa.fee}
+                              placeholder="Visa Fee"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                            />
+                          </div>
+
+                          <div className="mt-6 modal-action">
+                            <button className="w-full btn bg-[#034833] text-white py-2 px-4 rounded-md hover:bg-green-700">
+                              Apply
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </dialog>
+              </div>
+            </div>
+          </div>
         ) : (
           <p>No details available. Please go back and select a visa.</p>
         )}

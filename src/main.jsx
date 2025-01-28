@@ -32,7 +32,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/allVisas/:id",
-    element: <VisaDetails></VisaDetails>,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <VisaDetails></VisaDetails>
+      </PrivateRoute>
+    ),
   },
   {
     path: "/addVisa",
