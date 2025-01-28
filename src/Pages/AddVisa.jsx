@@ -1,4 +1,6 @@
+import { data } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddVisa = () => {
   const visaTypes = [
@@ -27,7 +29,7 @@ const AddVisa = () => {
     const method = form.method.value;
     const fee = form.fee.value;
 
-    console.log(
+    const newVisa = {
       name,
       photo,
       visa,
@@ -36,8 +38,23 @@ const AddVisa = () => {
       age,
       validity,
       method,
-      fee
-    );
+      fee,
+    };
+
+    fetch("http://localhost:5000/visas", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newVisa),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast("New Visa added Successfully");
+        }
+      });
   };
 
   return (
@@ -87,7 +104,7 @@ const AddVisa = () => {
                 Processing Time:
               </label>
               <input
-                type="number"
+                type="text"
                 name="time"
                 placeholder="Enter processing time"
                 className="input input-bordered w-full"
@@ -169,6 +186,7 @@ const AddVisa = () => {
           </form>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

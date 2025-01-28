@@ -58,7 +58,14 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 space-x-3 font-semibold">
           <Link to="/">Home</Link>
           <Link to="/allVisas">All Visas</Link>
-          {user ? <Link to="/addVisa">Add Visa</Link> : ""}
+          {user?.email ? (
+            <div className="space-x-3 ">
+              <Link to="/addVisa">Add Visa</Link>
+              <Link to="/visaApplication">Visa Application</Link>
+            </div>
+          ) : (
+            ""
+          )}
         </ul>
       </div>
       <div className="navbar-end">

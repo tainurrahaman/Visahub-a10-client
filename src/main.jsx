@@ -9,6 +9,8 @@ import SignUp from "./Components/SignUp.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
 import PrivateRoute from "./Routes/PrivateRoute.jsx";
 import AddVisa from "./Pages/AddVisa.jsx";
+import AllVisas from "./Pages/AllVisas.jsx";
+import VisaDetails from "./Pages/VisaDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +26,27 @@ const router = createBrowserRouter([
     element: <SignUp></SignUp>,
   },
   {
+    path: "/allVisas",
+    element: <AllVisas></AllVisas>,
+    loader: () => fetch("http://localhost:5000/visas"),
+  },
+  {
+    path: "/allVisas/:id",
+    element: <VisaDetails></VisaDetails>,
+  },
+  {
     path: "/addVisa",
     element: (
       <PrivateRoute>
         <AddVisa></AddVisa>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/visaDetails",
+    element: (
+      <PrivateRoute>
+        <VisaDetails></VisaDetails>
       </PrivateRoute>
     ),
   },
