@@ -10,6 +10,9 @@ const VisaDetails = () => {
   const location = useLocation();
   const visa = location.state;
   const navigate = useNavigate();
+
+  console.log(visa);
+
   const handleVisaApplication = (e) => {
     e.preventDefault();
     document.getElementById("my_modal_5").close();
@@ -20,9 +23,24 @@ const VisaDetails = () => {
     const lastName = form.lastName.value;
     const appliedDate = form.appliedDate.value;
     const fee = form.fee.value;
+    const country = form.country.value;
+    const photo = form.photo.value;
+    const visa = form.visa.value;
+    const time = form.time.value;
+    const validity = form.validity.value;
 
-    console.log(email, firstName, lastName, appliedDate, fee);
-    const visaApply = { email, firstName, lastName, appliedDate, fee };
+    const visaApply = {
+      email,
+      firstName,
+      lastName,
+      appliedDate,
+      fee,
+      country,
+      photo,
+      visa,
+      time,
+      validity,
+    };
     fetch("http://localhost:5000/visaApply", {
       method: "POST",
       headers: {
@@ -109,68 +127,130 @@ const VisaDetails = () => {
                           Visa Application Form
                         </h2>
                         <form onSubmit={handleVisaApplication} method="dialog">
-                          <div className="mb-4">
-                            <label className="block text-gray-700 font-semibold mb-2">
-                              Email
-                            </label>
-                            <input
-                              type="email"
-                              name="email"
-                              defaultValue={user.email}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
-                            />
+                          <div className="flex gap-2">
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Email
+                              </label>
+                              <input
+                                type="email"
+                                name="email"
+                                defaultValue={user.email}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                              />
+                            </div>
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Country
+                              </label>
+                              <input
+                                type="text"
+                                name="country"
+                                defaultValue={visa.name}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                              />
+                            </div>
                           </div>
-
-                          <div className="mb-4">
-                            <label className="block text-gray-700 font-semibold mb-2">
-                              First Name
-                            </label>
-                            <input
-                              type="text"
-                              name="firstName"
-                              placeholder="Enter your first name"
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                              required
-                            />
+                          <div className="flex gap-2">
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                First Name
+                              </label>
+                              <input
+                                type="text"
+                                name="firstName"
+                                placeholder="Enter your first name"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                                required
+                              />
+                            </div>
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Last Name
+                              </label>
+                              <input
+                                type="text"
+                                name="lastName"
+                                placeholder="Enter your last name"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                                required
+                              />
+                            </div>
                           </div>
-
-                          <div className="mb-4">
-                            <label className="block text-gray-700 font-semibold mb-2">
-                              Last Name
-                            </label>
-                            <input
-                              type="text"
-                              name="lastName"
-                              placeholder="Enter your last name"
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                              required
-                            />
+                          <div className="flex gap-2">
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Applied Date
+                              </label>
+                              <input
+                                type="date"
+                                name="appliedDate"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                              />
+                            </div>
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Fee
+                              </label>
+                              <input
+                                type="number"
+                                name="fee"
+                                defaultValue={visa.fee}
+                                placeholder="Visa Fee"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                              />
+                            </div>
                           </div>
-
-                          <div className="mb-4">
-                            <label className="block text-gray-700 font-semibold mb-2">
-                              Applied Date
-                            </label>
-                            <input
-                              type="date"
-                              name="appliedDate"
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
-                            />
+                          <div className="flex gap-2">
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Country image
+                              </label>
+                              <input
+                                type="text"
+                                name="photo"
+                                defaultValue={visa.photo}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                              />
+                            </div>
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Visa_type
+                              </label>
+                              <input
+                                type="text"
+                                name="visa"
+                                defaultValue={visa.visa}
+                                placeholder="Visa Fee"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                              />
+                            </div>
                           </div>
-
-                          <div className="mb-4">
-                            <label className="block text-gray-700 font-semibold mb-2">
-                              Fee
-                            </label>
-                            <input
-                              type="number"
-                              name="fee"
-                              defaultValue={visa.fee}
-                              placeholder="Visa Fee"
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
-                            />
+                          <div className="flex gap-2">
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Processing_time
+                              </label>
+                              <input
+                                type="text"
+                                name="time"
+                                defaultValue={visa.time}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                              />
+                            </div>
+                            <div className="mb-4 w-1/2">
+                              <label className="block text-gray-700 font-semibold mb-2">
+                                Validity
+                              </label>
+                              <input
+                                type="text"
+                                name="validity"
+                                defaultValue={visa.validity}
+                                placeholder="Visa Fee"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                              />
+                            </div>
                           </div>
-
                           <div className="mt-6 modal-action">
                             <button className="w-full btn bg-[#034833] text-white py-2 px-4 rounded-md hover:bg-green-700">
                               Apply

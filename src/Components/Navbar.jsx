@@ -60,8 +60,8 @@ const Navbar = () => {
           <Link to="/allVisas">All Visas</Link>
           {user?.email ? (
             <div className="space-x-3 ">
-              <Link to="/addVisa">Add Visa</Link>
-              <Link to="/visaApplication">Visa Application</Link>
+              <Link to="/addVisa">Add_Visa</Link>
+              <Link to="/visaApplication">My_Visa_Application</Link>
             </div>
           ) : (
             ""
