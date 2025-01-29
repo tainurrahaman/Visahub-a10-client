@@ -27,12 +27,12 @@ const router = createBrowserRouter([
     element: <SignUp></SignUp>,
   },
   {
-    path: "/allVisas",
+    path: "/visas",
     element: <AllVisas></AllVisas>,
     loader: () => fetch("https://visahub-a10-server.vercel.app/visas"),
   },
   {
-    path: "/allVisas/:id",
+    path: "/visas/:id",
     element: (
       <PrivateRoute>
         {" "}

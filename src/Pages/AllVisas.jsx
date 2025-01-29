@@ -26,7 +26,7 @@ const AllVisas = () => {
             </div>
             <div className="flex justify-center items-center mt-3">
               <Link
-                to={`/allVisas/${visa._id}`}
+                to={`/visas/${visa._id}`}
                 state={visa}
                 className="btn bg-[#034833] text-white hover:bg-gray-700 text-[12px] md:text-[14px]"
               >

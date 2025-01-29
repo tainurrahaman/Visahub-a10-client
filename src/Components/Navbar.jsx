@@ -57,7 +57,7 @@ const Navbar = () => {
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1 space-x-3 font-semibold">
           <Link to="/">Home</Link>
-          <Link to="/allVisas">All Visas</Link>
+          <Link to="/visas">All Visas</Link>
           {user?.email ? (
             <div className="space-x-3 ">
               <Link to="/addVisa">Add_Visa</Link>
