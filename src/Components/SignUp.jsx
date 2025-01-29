@@ -25,7 +25,7 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        fetch("http://localhost:5000/users", {
+        fetch("https://visahub-a10-server.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

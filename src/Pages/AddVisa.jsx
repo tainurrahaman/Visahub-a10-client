@@ -41,7 +41,7 @@ const AddVisa = () => {
       fee,
     };
 
-    fetch("http://localhost:5000/visas", {
+    fetch("https://visahub-a10-server.vercel.app/visas", {
       method: "POST",
       headers: {
         "content-type": "application/json",

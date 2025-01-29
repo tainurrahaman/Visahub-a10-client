@@ -24,7 +24,7 @@ const Login = () => {
         const creationTime = user.metadata.creationTime;
         const loginUser = { lastSignInTime, creationTime, email };
 
-        fetch("http://localhost:5000/users", {
+        fetch("https://visahub-a10-server.vercel.app/users", {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

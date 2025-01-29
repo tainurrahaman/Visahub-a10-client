@@ -41,7 +41,7 @@ const VisaDetails = () => {
       time,
       validity,
     };
-    fetch("http://localhost:5000/visaApply", {
+    fetch("https://visahub-a10-server.vercel.app/visaApply", {
       method: "POST",
       headers: {
         "content-type": "application/json",
