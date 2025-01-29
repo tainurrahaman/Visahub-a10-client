@@ -1,7 +1,38 @@
-import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const ApplicationPage = ({ data }) => {
-  console.log(data);
+const ApplicationPage = ({ data, visaData, setVisaData }) => {
+  const cancelApply = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/visaApply/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "This Visa Application has been deleted.",
+                icon: "success",
+              });
+            }
+            const remainingVisa = visaData.filter((visa) => visa._id !== id);
+            setVisaData(remainingVisa);
+          });
+      }
+    });
+  };
+  console.log(visaData);
+
   return (
     <div className="rounded-md bg-gray-100 p-3 md:p-5">
       <div className="mb-3 w-full">
@@ -28,7 +59,10 @@ const ApplicationPage = ({ data }) => {
         </div>
       </div>
       <div className="mt-3">
-        <button className="btn rounded-md w-full bg-[#034833] text-white hover:bg-gray-700 text-[12px] md:text-[14px]">
+        <button
+          onClick={() => cancelApply(data._id)}
+          className="btn rounded-md w-full bg-[#034833] text-white hover:bg-gray-700 text-[12px] md:text-[14px]"
+        >
           Cancel Apply
         </button>
       </div>
