@@ -7,6 +7,8 @@ import { ToastContainer } from "react-toastify";
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
 
+  console.log(user);
+
   const handleLogout = () => {
     logoutUser()
       .then(() => {
@@ -61,7 +63,7 @@ const Navbar = () => {
           {user?.email ? (
             <div className="space-x-3 ">
               <Link to="/addVisa">Add_Visa</Link>
-              <Link to="/visaApplication">My_Visa_Application</Link>
+              <Link to={`/visaApplication`}>My_Visa_Application</Link>
             </div>
           ) : (
             ""
