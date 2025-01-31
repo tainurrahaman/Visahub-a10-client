@@ -13,6 +13,7 @@ import AllVisas from "./Pages/AllVisas.jsx";
 import VisaDetails from "./Pages/VisaDetails.jsx";
 import VisaApplication from "./Pages/VisaApplication.jsx";
 import UserAddedVisa from "./Pages/UserAddedVisa.jsx";
+import ErrorPage from "./Components/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
         <UserAddedVisa></UserAddedVisa>
       </PrivateRoute>
     ),
+  },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
   },
 ]);
 

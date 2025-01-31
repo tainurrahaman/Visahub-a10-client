@@ -9,11 +9,7 @@ const Footer = () => {
       </div>
       <div className="flex justify-center items-center w-full gap-7 md:gap-10">
         <aside className="flex gap-2 items-center">
-          <p>
-            VisaHub.NinetyOne.com
-            <br />
-            Providing services since 1992
-          </p>
+          <p>VisaHub.NinetyOne.com</p>
         </aside>
         <div className="flex gap-4">
           <a>
@@ -54,6 +50,7 @@ const Footer = () => {
 
       <div className="w-full">
         <p className="text-center text-[12px] md:text-sm w-full">
+          Providing services since 1992 <br />
           Copyright © {new Date().getFullYear()} - All right reserved by
           VisaHub.NinetyOne.com
         </p>

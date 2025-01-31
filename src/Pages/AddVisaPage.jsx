@@ -5,16 +5,24 @@ import Swal from "sweetalert2";
 const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
   const visas = useLoaderData();
   const [allVisa, setAllVisa] = useState(visas);
-  const [selectedVisa, setSelectedVisa] = useState({});
+  //   const [selectedVisa, setSelectedVisa] = useState({});
+
+  const [datas, setDatas] = useState([]);
 
   const handleUpdateClick = (id) => {
-    const clickedVisa = allVisa.find((visa) => visa._id === id);
-    // if (clickedVisa) {
-    //   setSelectedVisa(clickedVisa);
-    // }
+    console.log(id);
+    // const clickedVisa = allVisa.find((visa) => visa._id === id);
 
-    document.getElementById("updateModal").showModal();
-    setSelectedVisa(clickedVisa);
+    // document.getElementById("updateModal").showModal();
+    // setSelectedVisa(clickedVisa);
+    // console.log(clickedVisa);
+
+    fetch(`http://localhost:5000/visas/${id}`)
+      .then((res) => res.json())
+      .then((item) => {
+        console.log(item);
+        setDatas(item);
+      });
   };
 
   const handleVisaUpdate = (e) => {
@@ -125,7 +133,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
           >
             Update
           </button>
-
+          {/* Update Modal  */}
           <dialog
             id="updateModal"
             className="w-3/4 md:w-full mx-auto modal  sm:modal-middle"
@@ -159,7 +167,8 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                           type="text"
                           name="name"
                           placeholder="Country Name"
-                          defaultValue={selectedVisa?.name}
+                          //   defaultValue={selectedVisa?.name}
+                          defaultValue={datas.name}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                         />
                       </div>
