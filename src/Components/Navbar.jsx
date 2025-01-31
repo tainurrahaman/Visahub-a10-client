@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.webp";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
-
-  console.log(user);
 
   const handleLogout = () => {
     logoutUser()

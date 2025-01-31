@@ -1,19 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Navbar from "../Components/Navbar";
-import ApplicationPage from "./ApplicationPage";
+import AddVisaPage from "./AddVisaPage";
+import { useLoaderData } from "react-router-dom";
 
 const UserAddedVisa = () => {
   const { user } = useContext(AuthContext);
+
   const [loading, setLoading] = useState(true);
-  const [visaData, setVisaData] = useState([]);
+  const [addedVisaData, setaddedVisaData] = useState([]);
 
   useEffect(() => {
-    setLoading(loading);
+    // setLoading(loading);
     fetch(`http://localhost:5000/visas?email=${user.email}`)
       .then((response) => response.json())
       .then((data) => {
-        setVisaData(data);
+        setaddedVisaData(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -27,16 +29,17 @@ const UserAddedVisa = () => {
       <Navbar></Navbar>
       <div className="p-5">
         <h2 className="font-bold text-xl md:text-3xl my-3 md:my-5">
-          Total Application: {visaData.length}
+          Total Visa Added: {addedVisaData.length}
         </h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 rounded-lg">
-          {visaData.map((data) => (
-            <ApplicationPage
+          {addedVisaData.map((data) => (
+            <AddVisaPage
               key={data._id}
-              visaData={visaData}
-              setVisaData={setVisaData}
+              addedVisaData={addedVisaData}
+              setaddedVisaData={setaddedVisaData}
               data={data}
-            ></ApplicationPage>
+            ></AddVisaPage>
           ))}
         </div>
       </div>
