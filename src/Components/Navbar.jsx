@@ -64,6 +64,7 @@ const Navbar = () => {
             <div className="space-x-3 ">
               <Link to="/addVisa">Add_Visa</Link>
               <Link to={`/visaApplication`}>My_Visa_Application</Link>
+              <Link to={`/userAddedVisa`}>My_added_Visa</Link>
             </div>
           ) : (
             ""

@@ -12,6 +12,7 @@ import AddVisa from "./Pages/AddVisa.jsx";
 import AllVisas from "./Pages/AllVisas.jsx";
 import VisaDetails from "./Pages/VisaDetails.jsx";
 import VisaApplication from "./Pages/VisaApplication.jsx";
+import UserAddedVisa from "./Pages/UserAddedVisa.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <VisaApplication></VisaApplication>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/userAddedVisa",
+    element: (
+      <PrivateRoute>
+        <UserAddedVisa></UserAddedVisa>
       </PrivateRoute>
     ),
   },

@@ -14,7 +14,7 @@ const AllVisas = () => {
           <div className="rounded-md bg-gray-100 p-3 md:p-5" key={visa._id}>
             <div className="mb-3">
               <img
-                className="max-w-full rounded-md h-28 md:h-40"
+                className="w-full rounded-md h-28 md:h-40"
                 src={visa.photo}
                 alt="Country Photo"
               />

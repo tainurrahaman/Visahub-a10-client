@@ -1,8 +1,13 @@
 import { data } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import { toast, ToastContainer } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AddVisa = () => {
+  const { user } = useContext(AuthContext);
+  const email = user.email;
+
   const visaTypes = [
     "Tourist visa",
     "Student visa",
@@ -39,6 +44,7 @@ const AddVisa = () => {
       validity,
       method,
       fee,
+      email,
     };
 
     fetch("https://visahub-a10-server.vercel.app/visas", {
