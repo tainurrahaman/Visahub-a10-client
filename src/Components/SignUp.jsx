@@ -146,7 +146,7 @@ import { updateProfile } from "firebase/auth";
 import auth from "../Firebase/firebase.init";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setUser, loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignUp = (e) => {
@@ -165,7 +165,7 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
 
         // Update user profile with display name and photo URL
         updateProfile(auth.currentUser, {
@@ -183,7 +183,7 @@ const SignUp = () => {
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log(data);
+                // console.log(data);
                 navigate("/");
                 if (data.insertedId) {
                   Swal.fire({
@@ -199,7 +199,18 @@ const SignUp = () => {
           });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+      });
+  };
+
+  const handleWithGoogleSignup = () => {
+    loginWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -261,23 +272,27 @@ const SignUp = () => {
                 </fieldset>
               </div>
             </form>
-            <div className="flex justify-center items-center mb-5">
-              <div className="space-y-4">
-                <Link
-                  to="/"
-                  className="btn btn-outline w-[300px] flex items-center justify-center space-x-2 rounded-full"
-                >
-                  <FcGoogle className="h-[37px] w-[37px]" />
-                  <span>Continue with Google</span>
+
+            <div>
+              <p className="text-center pb-10">
+                Already have an account?{" "}
+                <Link to="/login" className="font-semibold">
+                  LogIn
                 </Link>
-              </div>
+              </p>
             </div>
-            <p className="text-center pb-10">
-              Already have an account?{" "}
-              <Link to="/login" className="font-semibold">
-                LogIn
+          </div>
+          <div className="flex justify-center items-center mb-5">
+            <div className="space-y-4">
+              <Link
+                onClick={handleWithGoogleSignup}
+                to="/"
+                className="btn btn-outline w-[300px] flex items-center justify-center space-x-2 rounded-full"
+              >
+                <FcGoogle className="h-[37px] w-[37px]" />
+                <span>Continue with Google</span>
               </Link>
-            </p>
+            </div>
           </div>
         </div>
       </div>

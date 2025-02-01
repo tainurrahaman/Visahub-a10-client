@@ -122,12 +122,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Navbar from "./Navbar";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, setUser, loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -140,7 +141,7 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         navigate("/");
         Swal.fire({
           title: "Login Successful",
@@ -149,7 +150,19 @@ const Login = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+      });
+  };
+
+  const handleLoginWithGoogle = () => {
+    loginWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        setUser(user);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -196,26 +209,30 @@ const Login = () => {
                 </fieldset>
               </div>
             </form>
-            <div className="flex justify-center items-center mb-5">
-              <div className="space-y-4">
-                <Link
-                  to="/"
-                  className="btn btn-outline w-[300px] flex items-center justify-center space-x-2 rounded-full"
-                >
-                  <FcGoogle className="h-[37px] w-[37px]" />
-                  <span>Continue with Google</span>
+            <div>
+              <p className="text-center pb-10">
+                Don't have an account?{" "}
+                <Link to="/signup" className="font-semibold">
+                  SignUp
                 </Link>
-              </div>
+              </p>
             </div>
-            <p className="text-center pb-10">
-              Don't have an account?{" "}
-              <Link to="/signup" className="font-semibold">
-                SignUp
+          </div>
+          <div className="flex justify-center items-center mb-5">
+            <div className="space-y-4">
+              <Link
+                onClick={handleLoginWithGoogle}
+                to="/"
+                className="btn btn-outline w-[300px] flex items-center justify-center space-x-2 rounded-full"
+              >
+                <FcGoogle className="h-[37px] w-[37px]" />
+                <span>Continue with Google</span>
               </Link>
-            </p>
+            </div>
           </div>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

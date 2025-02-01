@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar";
 
 const AllVisas = () => {
   const loadedVisa = useLoaderData();
+  console.log(loadedVisa);
 
   return (
     <div className="w-11/12 mx-auto my-4">

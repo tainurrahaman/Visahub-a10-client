@@ -11,7 +11,7 @@ const VisaDetails = () => {
   const visa = location.state;
   const navigate = useNavigate();
 
-  console.log(visa);
+  // console.log(visa);
 
   const handleVisaApplication = (e) => {
     e.preventDefault();
@@ -50,7 +50,7 @@ const VisaDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Your application is Successful!",

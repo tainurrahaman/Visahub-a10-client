@@ -10,7 +10,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
   const [datas, setDatas] = useState([]);
 
   const handleUpdateClick = (id) => {
-    console.log(id);
+    // console.log(id);
     // const clickedVisa = allVisa.find((visa) => visa._id === id);
 
     // document.getElementById("updateModal").showModal();
@@ -20,14 +20,14 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
     fetch(`http://localhost:5000/visas/${id}`)
       .then((res) => res.json())
       .then((item) => {
-        console.log(item);
+        // console.log(item);
         setDatas(item);
       });
   };
 
   const handleVisaUpdate = (e) => {
     e.preventDefault();
-    console.log(id);
+    // console.log(id);
 
     const form = e.target;
     const method = form.method.value;
@@ -56,7 +56,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Visa Updated Successfully!",
