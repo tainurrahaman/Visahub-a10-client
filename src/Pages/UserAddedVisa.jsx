@@ -11,7 +11,7 @@ const UserAddedVisa = () => {
   const [addedVisaData, setaddedVisaData] = useState([]);
 
   useEffect(() => {
-    // setLoading(loading);
+    setLoading(loading);
     fetch(`http://localhost:5000/visas?email=${user.email}`)
       .then((response) => response.json())
       .then((data) => {
