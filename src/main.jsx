@@ -14,11 +14,19 @@ import VisaDetails from "./Pages/VisaDetails.jsx";
 import VisaApplication from "./Pages/VisaApplication.jsx";
 import UserAddedVisa from "./Pages/UserAddedVisa.jsx";
 import ErrorPage from "./Components/ErrorPage.jsx";
+import LatestVisa from "./Components/LatestVisa.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Homelayout></Homelayout>,
+    children: [
+      {
+        path: "/",
+        element: <LatestVisa></LatestVisa>,
+        loader: () => fetch("http://localhost:5000/visas/latest"),
+      },
+    ],
   },
   {
     path: "/login",
