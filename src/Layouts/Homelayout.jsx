@@ -3,6 +3,8 @@ import Banner from "../Components/Banner";
 import Footer from "../Components/Footer";
 import LatestVisa from "../Components/LatestVisa";
 import Navbar from "../Components/Navbar";
+import VisaServices from "../Pages/VisaServices";
+import Choose from "../Components/Choose";
 
 const Homelayout = () => {
   return (
@@ -12,6 +14,8 @@ const Homelayout = () => {
         <Banner></Banner>
         {/* <LatestVisa></LatestVisa> */}
         <Outlet></Outlet>
+        <VisaServices></VisaServices>
+        <Choose></Choose>
       </div>
       <div>
         <Footer></Footer>
