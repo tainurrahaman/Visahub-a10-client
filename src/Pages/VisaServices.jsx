@@ -38,7 +38,7 @@ const visas = [
     description:
       "A working visa grants you permission to work legally in a foreign country. Requirements typically include a job offer and employer sponsorship.",
     image:
-      "https://i.ibb.co.com/wNzfzkVD/young-family-three-posing-together-before-travel-vacation-23-2149205286.jpg",
+      "https://i.ibb.co.com/SwYT0qBV/day-office-travel-agency-23-2150769958.jpg",
     icon: "💼",
   },
 ];
