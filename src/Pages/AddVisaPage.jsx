@@ -1,33 +1,31 @@
-import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
   const visas = useLoaderData();
-  const [allVisa, setAllVisa] = useState(visas);
-  //   const [selectedVisa, setSelectedVisa] = useState({});
+  const navigate = useNavigate();
+  const [allVisa, setAllVisa] = useState(addedVisaData);
+  const [selectedVisa, setSelectedVisa] = useState([]);
 
   const [datas, setDatas] = useState([]);
 
   const handleUpdateClick = (id) => {
     // console.log(id);
-    // const clickedVisa = allVisa.find((visa) => visa._id === id);
+    const clickedVisa = allVisa.find((visa) => visa._id === id);
 
-    // document.getElementById("updateModal").showModal();
-    // setSelectedVisa(clickedVisa);
-    // console.log(clickedVisa);
+    document.getElementById("updateModal").showModal();
+    setSelectedVisa(clickedVisa);
 
-    fetch(`http://localhost:5000/visas/${id}`)
+    fetch(`https://visahub-a10-server.vercel.app/visas/all/${id}`)
       .then((res) => res.json())
       .then((item) => {
-        // console.log(item);
         setDatas(item);
       });
   };
 
   const handleVisaUpdate = (e) => {
     e.preventDefault();
-    // console.log(id);
 
     const form = e.target;
     const method = form.method.value;
@@ -47,17 +45,20 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
       time,
       validity,
     };
-    fetch(`https://visahub-a10-server.vercel.app/visas/${selectedVisa._id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(visaUpdate),
-    })
+    fetch(
+      `https://visahub-a10-server.vercel.app/visas/all/${selectedVisa._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(visaUpdate),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Visa Updated Successfully!",
             icon: "success",
@@ -153,7 +154,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         <input
                           type="text"
                           name="photo"
-                          defaultValue={data.photo}
+                          placeholder="Country PhotoURL"
                           className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                         />
                       </div>
@@ -167,8 +168,6 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                           type="text"
                           name="name"
                           placeholder="Country Name"
-                          //   defaultValue={selectedVisa?.name}
-                          defaultValue={datas.name}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                         />
                       </div>
@@ -179,7 +178,6 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         <input
                           type="text"
                           name="visa"
-                          // defaultValue={}
                           placeholder="Enter your visa type"
                           className="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-md text-gray-700"
                           required
@@ -194,7 +192,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         <input
                           type="text"
                           name="time"
-                          defaultValue={data.time}
+                          placeholder="Processing Time"
                           className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                         />
                       </div>
@@ -205,7 +203,6 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         <input
                           type="text"
                           name="fee"
-                          defaultValue={data.fee}
                           placeholder="Enter your visa type"
                           className="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-md text-gray-700"
                           required
@@ -220,7 +217,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         <input
                           type="text"
                           name="method"
-                          defaultValue={data.method}
+                          placeholder="Application Method"
                           className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                         />
                       </div>
@@ -231,7 +228,6 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         <input
                           type="text"
                           name="validity"
-                          defaultValue={data.validity}
                           placeholder="Enter your visa type"
                           className="w-full px-3 py-2 border border-gray-300 bg-gray-100 rounded-md text-gray-700"
                           required

@@ -1,99 +1,3 @@
-// import { data, Link } from "react-router-dom";
-// import logo from "../assets/logo.webp";
-// import { useContext, useEffect, useState } from "react";
-// import { AuthContext } from "../Provider/AuthProvider";
-// import { toast, ToastContainer } from "react-toastify";
-
-// const Navbar = () => {
-//   const { user, logoutUser } = useContext(AuthContext);
-
-//   const handleLogout = () => {
-//     logoutUser()
-//       .then(() => {
-//         toast("Successfully Logout");
-//       })
-//       .catch((err) => {
-//         toast(err.message);
-//       });
-//   };
-
-//   console.log(user);
-//   console.log(userData);
-
-//   return (
-//     <div className="navbar px-0 bg-base-100">
-//       <div className="navbar-start gap-1 md:gap-2">
-//         <div className="dropdown ">
-//           <div
-//             tabIndex={0}
-//             role="button"
-//             className="btn px-0 btn-ghost md:hidden"
-//           >
-//             <svg
-//               xmlns="http://www.w3.org/2000/svg"
-//               className="h-5 w-5"
-//               fill="none"
-//               viewBox="0 0 24 24"
-//               stroke="currentColor"
-//             >
-//               <path
-//                 strokeLinecap="round"
-//                 strokeLinejoin="round"
-//                 strokeWidth="2"
-//                 d="M4 6h16M4 12h8m-8 6h16"
-//               />
-//             </svg>
-//           </div>
-//           <ul
-//             tabIndex={0}
-//             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-semibold space-x-3"
-//           >
-//             <Link to="/">Home</Link>
-//             <Link to="/allVisas">All Visas</Link>
-//           </ul>
-//         </div>
-//         <div className="max-w-6 md:max-w-10 object-center">
-//           <img src={logo} alt="Website Logo" className="rounded-full" />
-//         </div>
-//         <a className="text-[#034833] font-bold text-md md:text-3xl">VisaHub</a>
-//       </div>
-//       <div className="navbar-center hidden md:flex">
-//         <ul className="menu menu-horizontal px-1 space-x-3 font-semibold">
-//           <Link to="/">Home</Link>
-//           <Link to="/visas">All Visas</Link>
-//           {user?.email ? (
-//             <div className="space-x-3 ">
-//               <Link to="/addVisa">Add_Visa</Link>
-//               <Link to={`/visaApplication`}>My_Visa_Application</Link>
-//               <Link to={`/userAddedVisa`}>My_added_Visa</Link>
-//             </div>
-//           ) : (
-//             ""
-//           )}
-//         </ul>
-//       </div>
-//       <div className="navbar-end">
-//         {user?.email ? (
-//           <Link
-//             onClick={handleLogout}
-//             to="/"
-//             className="btn bg-[#034833] text-white"
-//           >
-//             Logout
-//           </Link>
-//         ) : (
-//           <Link to="/login" className=" btn bg-[#034833] text-white">
-//             Login
-//           </Link>
-//         )}
-//       </div>
-//       <ToastContainer></ToastContainer>
-//     </div>
-//   );
-// };
-
-// export default Navbar;
-
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.webp";
 import { useContext } from "react";
@@ -114,13 +18,15 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar px-0 bg-base-100">
-      <div className="navbar-start gap-1 md:gap-2">
+    <div className="navbar px-4 sm:px-6 lg:px-8 bg-base-100">
+      {/* Navbar Start: Logo and Mobile Menu */}
+      <div className="navbar-start gap-2 md:gap-4">
+        {/* Mobile Menu Dropdown */}
         <div className="dropdown">
           <div
             tabIndex={0}
             role="button"
-            className="btn px-0 btn-ghost md:hidden"
+            className="btn btn-ghost px-0 lg:hidden"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -139,35 +45,69 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-semibold space-x-3"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow font-semibold"
           >
-            <Link to="/">Home</Link>
-            <Link to="/allVisas">All Visas</Link>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/allVisas">All Visas</Link>
+            </li>
+            {user?.email && (
+              <>
+                <li>
+                  <Link to="/addVisa">Add Visa</Link>
+                </li>
+                <li>
+                  <Link to="/visaApplication">My Visa Application</Link>
+                </li>
+                <li>
+                  <Link to="/userAddedVisa">My Added Visa</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
-        <div className="max-w-6 md:max-w-10 object-center">
+
+        {/* Logo and Brand Name */}
+        <div className="max-w-8 md:max-w-10">
           <img src={logo} alt="Website Logo" className="rounded-full" />
         </div>
-        <a className="text-[#034833] font-bold text-md md:text-3xl">VisaHub</a>
+        <a className="text-[#034833] font-bold text-lg md:text-2xl lg:text-3xl">
+          VisaHub
+        </a>
       </div>
-      <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal px-1 space-x-3 font-semibold">
-          <Link to="/">Home</Link>
-          <Link to="/visas">All Visas</Link>
-          {user?.email ? (
-            <div className="space-x-3">
-              <Link to="/addVisa">Add_Visa</Link>
-              <Link to={`/visaApplication`}>My_Visa_Application</Link>
-              <Link to={`/userAddedVisa`}>My_added_Visa</Link>
-            </div>
-          ) : (
-            ""
+
+      {/* Navbar Center: Desktop Menu */}
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1 gap-4 font-semibold">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/visas">All Visas</Link>
+          </li>
+          {user?.email && (
+            <>
+              <li>
+                <Link to="/addVisa">Add Visa</Link>
+              </li>
+              <li>
+                <Link to="/visaApplication">My Visa Application</Link>
+              </li>
+              <li>
+                <Link to="/userAddedVisa">My Added Visa</Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
+
+      {/* Navbar End: Login/Logout and User Profile */}
       <div className="navbar-end">
         {user?.email ? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            {/* User Profile Image with Hover Effect */}
             <div className="relative group">
               <img
                 src={user.photoURL}
@@ -178,6 +118,7 @@ const Navbar = () => {
                 {user.displayName}
               </div>
             </div>
+            {/* Logout Button */}
             <Link
               onClick={handleLogout}
               to="/"
@@ -192,7 +133,8 @@ const Navbar = () => {
           </Link>
         )}
       </div>
-      <ToastContainer></ToastContainer>
+
+      <ToastContainer />
     </div>
   );
 };

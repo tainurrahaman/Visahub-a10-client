@@ -19,7 +19,6 @@ const UserAddedVisa = () => {
         setLoading(false);
       })
       .catch((error) => {
-        // console.log(error);
         setLoading(false);
       });
   }, [user.email]);
@@ -29,7 +28,7 @@ const UserAddedVisa = () => {
       <Navbar></Navbar>
       <div className="p-5">
         <h2 className="font-bold text-xl md:text-3xl my-3 md:my-5">
-          Total Visa Added: {addedVisaData.length}
+          Total added Visa: {addedVisaData.length}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 rounded-lg">
