@@ -12,7 +12,6 @@ const Homelayout = () => {
       <div className="w-11/12 mx-auto my-4">
         <Navbar></Navbar>
         <Banner></Banner>
-        {/* <LatestVisa></LatestVisa> */}
         <Outlet></Outlet>
         <VisaServices></VisaServices>
         <AboutUs></AboutUs>

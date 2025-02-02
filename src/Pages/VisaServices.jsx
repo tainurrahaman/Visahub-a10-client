@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import { FaArrowRight } from "react-icons/fa";
 
 const visas = [
@@ -45,44 +46,47 @@ const visas = [
 
 const VisaServices = () => {
   return (
-    <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+    <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8 py-4 md:py-10">
       {/* Heading Section */}
-      <div className="text-center w-full md:w-2/3 mx-auto">
-        <h2 className="text-2xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
-          Outstanding Immigration Visa Services
-        </h2>
-      </div>
-
+      <Fade direction="right">
+        <div className="text-center w-full md:w-2/3 mx-auto">
+          <h2 className="text-2xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12">
+            Outstanding Immigration Visa Services
+          </h2>
+        </div>
+      </Fade>
       {/* Visa Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visas.map((visa, index) => (
-          <div
-            key={index}
-            className="shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-          >
-            {/* Image */}
-            <img
-              src={visa.image}
-              alt={visa.title}
-              className="w-full h-48 sm:h-56 md:h-64 object-cover"
-            />
+      <Fade direction="left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {visas.map((visa, index) => (
+            <div
+              key={index}
+              className="shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            >
+              {/* Image */}
+              <img
+                src={visa.image}
+                alt={visa.title}
+                className="w-full h-48 sm:h-56 md:h-64 object-cover"
+              />
 
-            {/* Content */}
-            <div className="p-4 sm:p-6 text-start">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-3xl">{visa.icon}</span>
-                <h3 className="text-xl font-semibold">{visa.title}</h3>
+              {/* Content */}
+              <div className="p-4 sm:p-6 text-start">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-3xl">{visa.icon}</span>
+                  <h3 className="text-xl font-semibold">{visa.title}</h3>
+                </div>
+                <p className="text-gray-600 text-sm sm:text-base mb-4">
+                  {visa.description}
+                </p>
+                <button className="flex items-center gap-2 text-sm sm:text-base text-blue-600 hover:text-blue-800 transition-colors duration-300">
+                  Read More <FaArrowRight />
+                </button>
               </div>
-              <p className="text-gray-600 text-sm sm:text-base mb-4">
-                {visa.description}
-              </p>
-              <button className="flex items-center gap-2 text-sm sm:text-base text-blue-600 hover:text-blue-800 transition-colors duration-300">
-                Read More <FaArrowRight />
-              </button>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Fade>
     </div>
   );
 };

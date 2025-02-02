@@ -31,7 +31,6 @@ const ApplicationPage = ({ data, visaData, setVisaData }) => {
       }
     });
   };
-  // console.log(visaData);
 
   return (
     <div className="rounded-md bg-gray-100 p-3 md:p-5">

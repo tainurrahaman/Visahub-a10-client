@@ -51,7 +51,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/allVisas">All Visas</Link>
+              <Link to="/visas">All Visas</Link>
             </li>
             {user?.email && (
               <>

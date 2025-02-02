@@ -33,12 +33,9 @@ const SignUp = () => {
 
     const newUser = { name, photo, email };
 
-    // const auth = getAuth(); // Initialize auth
-
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        // console.log(user);
 
         // Update user profile with display name and photo URL
         updateProfile(auth.currentUser, {
@@ -67,11 +64,11 @@ const SignUp = () => {
               });
           })
           .catch((error) => {
-            console.error("Error updating profile:", error.message);
+            toast("Error updating profile:", error.message);
           });
       })
       .catch((error) => {
-        // console.log(error);
+        toast(error);
       });
   };
 

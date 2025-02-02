@@ -1,4 +1,3 @@
-import { data } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import { toast, ToastContainer } from "react-toastify";
 import { useContext } from "react";
@@ -50,7 +49,6 @@ const AddVisa = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         if (data.insertedId) {
           toast("New Visa added Successfully");
         }

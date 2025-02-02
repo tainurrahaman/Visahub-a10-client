@@ -15,7 +15,6 @@ import VisaApplication from "./Pages/VisaApplication.jsx";
 import UserAddedVisa from "./Pages/UserAddedVisa.jsx";
 import ErrorPage from "./Components/ErrorPage.jsx";
 import LatestVisa from "./Components/LatestVisa.jsx";
-import VisaServices from "./Pages/VisaServices.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +24,9 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <LatestVisa></LatestVisa>,
-        loader: () => fetch("http://localhost:5000/visas/latest"),
+        loader: () =>
+          fetch("https://visahub-a10-server.vercel.app/visas/latest"),
       },
-      // {
-      //   path: "/",
-      //   element: <VisaServices></VisaServices>,
-      // },
     ],
   },
   {

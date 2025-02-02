@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Navbar from "../Components/Navbar";
 import AddVisaPage from "./AddVisaPage";
-import { useLoaderData } from "react-router-dom";
 
 const UserAddedVisa = () => {
   const { user } = useContext(AuthContext);
