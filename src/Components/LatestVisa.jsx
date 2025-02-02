@@ -35,17 +35,17 @@ const LatestVisa = () => {
       {/* Heading and Description Section */}
       <Fade cascade>
         <div className="text-center w-full md:w-2/3 mx-auto pb-5 pt-5 md:pt-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+          <h2 className="text-2xl sm:text-2xl md:text-4xl font-bold">
             Explore the Newest Visa Opportunities
           </h2>
-          <p className="font-normal md:font-semibold text-base sm:text-lg md:text-xl p-4">
+          <p className="font-normal md:font-semibold text-base sm:text-lg md:text-xl p-0 md:p-4 pt-2 md:pt-0">
             Stay updated with the latest visa openings and opportunities
             available for travel, study, or work abroad.
           </p>
         </div>
 
         {/* Visa Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-3 md:gap-5 px-4 sm:px-6 lg:px-8">
           {latestData.map((visa) => (
             <div
               className="rounded-md bg-gray-100 p-3 md:p-5 hover:shadow-lg transition-shadow duration-300"
