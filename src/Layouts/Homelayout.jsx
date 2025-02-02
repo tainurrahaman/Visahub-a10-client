@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 import LatestVisa from "../Components/LatestVisa";
 import Navbar from "../Components/Navbar";
 import VisaServices from "../Pages/VisaServices";
-import Choose from "../Components/Choose";
+import AboutUs from "../Components/AboutUs";
 
 const Homelayout = () => {
   return (
@@ -15,7 +15,7 @@ const Homelayout = () => {
         {/* <LatestVisa></LatestVisa> */}
         <Outlet></Outlet>
         <VisaServices></VisaServices>
-        <Choose></Choose>
+        <AboutUs></AboutUs>
       </div>
       <div>
         <Footer></Footer>

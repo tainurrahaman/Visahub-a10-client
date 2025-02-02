@@ -8,13 +8,7 @@ const AddVisa = () => {
   const { user } = useContext(AuthContext);
   const email = user.email;
 
-  const visaTypes = [
-    "Tourist visa",
-    "Student visa",
-    "Official visa",
-    "Business visa",
-    "Family visa",
-  ];
+  const visaTypes = ["Tourist", "Student", "Work", "Business", "Family"];
   const documentOptions = [
     "Valid passport",
     "Visa application form",
@@ -26,7 +20,7 @@ const AddVisa = () => {
     const form = e.target;
     const name = form.name.value;
     const photo = form.photo.value;
-    const visa = form.visa.value;
+    const type = form.type.value;
     const time = form.time.value;
     const description = form.description.value;
     const age = form.age.value;
@@ -37,7 +31,7 @@ const AddVisa = () => {
     const newVisa = {
       name,
       photo,
-      visa,
+      type,
       time,
       description,
       age,
@@ -96,7 +90,7 @@ const AddVisa = () => {
               <label className="block text-sm font-medium mb-1">
                 Visa Type:
               </label>
-              <select name="visa" className="select select-bordered w-full">
+              <select name="type" className="select select-bordered w-full">
                 <option value="">Select Visa Type</option>
                 {visaTypes.map((type, index) => (
                   <option key={index} value={type}>
