@@ -2,10 +2,12 @@ import Navbar from "../Components/Navbar";
 import { toast, ToastContainer } from "react-toastify";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const AddVisa = () => {
   const { user } = useContext(AuthContext);
   const email = user.email;
+  const navigate = useNavigate();
 
   const visaTypes = ["Tourist", "Student", "Work", "Business", "Family"];
   const documentOptions = [
@@ -53,6 +55,7 @@ const AddVisa = () => {
           toast("New Visa added Successfully");
         }
       });
+    navigate("/");
   };
 
   return (

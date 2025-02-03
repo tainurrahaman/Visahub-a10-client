@@ -15,6 +15,7 @@ import VisaApplication from "./Pages/VisaApplication.jsx";
 import UserAddedVisa from "./Pages/UserAddedVisa.jsx";
 import ErrorPage from "./Components/ErrorPage.jsx";
 import LatestVisa from "./Components/LatestVisa.jsx";
+import ResetPassword from "./Pages/ResetPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -77,12 +78,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/userAddedVisa",
-    // loader: () => fetch("https://visahub-a10-server.vercel.app/visas"),
     element: (
       <PrivateRoute>
         <UserAddedVisa></UserAddedVisa>
       </PrivateRoute>
     ),
+  },
+  {
+    path: "/resetPassword",
+    element: <ResetPassword></ResetPassword>,
   },
   {
     path: "*",

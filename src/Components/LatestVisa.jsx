@@ -54,7 +54,7 @@ const LatestVisa = () => {
               {/* Visa Image */}
               <div className="mb-3">
                 <img
-                  className="w-full rounded-md h-40 sm:h-48 md:h-56 lg:h-64 object-cover"
+                  className="w-full rounded-md h-40 lg:h-48"
                   src={visa.photo}
                   alt="Country Photo"
                 />
@@ -63,8 +63,7 @@ const LatestVisa = () => {
               {/* Visa Details */}
               <div className="font-semibold text-sm sm:text-base text-gray-700 space-y-2">
                 <p>Country: {visa.name}</p>
-                <p>Visa Validity: {visa.validity}</p>
-                <p>Visa Type: {visa.visa}</p>
+                <p>Visa Type: {visa.type}</p>
                 <p>Processing Time: {visa.time}</p>
               </div>
 

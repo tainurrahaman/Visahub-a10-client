@@ -77,11 +77,15 @@ const Login = () => {
                     placeholder="Password"
                     required
                   />
-                  <div>
-                    <a className="link link-hover font-semibold text-[14px]">
-                      Forgot password?
-                    </a>
+                  <div className="flex justify-between items-center mb-6">
+                    <Link
+                      to="/resetPassword"
+                      className="text-sm text-blue-600 hover:underline"
+                    >
+                      Forgot Password?
+                    </Link>
                   </div>
+
                   <button className="btn btn-neutral mt-4 font-semibold text-[16px]">
                     Login
                   </button>

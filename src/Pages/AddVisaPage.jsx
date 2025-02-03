@@ -121,7 +121,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
         <div className="font-semibold text-gray-700">
           <p>Application_method: {data.method}</p>
           <p>Processing_time: {data.time}</p>
-          <p>Visa_type: {data.visa}</p>
+          <p>Visa_type: {data.type}</p>
         </div>
       </div>
       <div className="mt-3 flex justify-between gap-5">

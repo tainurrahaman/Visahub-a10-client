@@ -112,7 +112,7 @@ const Navbar = () => {
               <img
                 src={user.photoURL}
                 alt="Profile"
-                className="w-10 h-10 rounded-full cursor-pointer"
+                className="w-10 h-10 rounded-full object-cover cursor-pointer"
               />
               <div className="absolute top-full left-1/2 transform -translate-x-1/2 bg-black text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                 {user.displayName}

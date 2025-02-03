@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Navbar from "../Components/Navbar";
 import AddVisaPage from "./AddVisaPage";
+import { toast, ToastContainer } from "react-toastify";
 
 const UserAddedVisa = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const UserAddedVisa = () => {
         setLoading(false);
       })
       .catch((error) => {
+        toast(error);
         setLoading(false);
       });
   }, [user.email]);
@@ -41,6 +43,7 @@ const UserAddedVisa = () => {
           ))}
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

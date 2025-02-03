@@ -55,7 +55,7 @@ const VisaDetails = () => {
             draggable: true,
           });
         }
-        navigate("/visas");
+        navigate("/");
       });
     form.reset();
   };
