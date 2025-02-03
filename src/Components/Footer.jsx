@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="footer gap-y-6 md:gap-y-10 bg-[#191E24] text-[14px] md:text-[16px] font-semibold text-gray-300 p-4 md:p-10 ">
+    <footer className="footer gap-y-6 md:gap-y-10 bg-[#191E24] text-[12px] md:text-[16px] font-semibold text-gray-300 p-4 md:p-10 ">
       <div className="flex w-full justify-center gap-4">
         <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>

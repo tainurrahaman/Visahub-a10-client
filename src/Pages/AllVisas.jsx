@@ -52,7 +52,7 @@ const AllVisas = () => {
                 alt="Country Photo"
               />
             </div>
-            <div className="font-semibold text-md text-gray-700">
+            <div className="font-semibold text-[12px] md:text-[16px] text-gray-700">
               <p>Country: {visa.name}</p>
               <p>Validity: {visa.validity}</p>
               <p>Type: {visa.type}</p>

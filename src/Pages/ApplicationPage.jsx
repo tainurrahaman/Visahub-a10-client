@@ -33,7 +33,7 @@ const ApplicationPage = ({ data, visaData, setVisaData }) => {
   };
 
   return (
-    <div className="rounded-md bg-gray-100 p-3 md:p-5">
+    <div className="rounded-md bg-gray-100 p-2 md:p-5">
       <div className="mb-3 w-full">
         <img
           className="w-full rounded-md max-h-36 md:max-h-44"
@@ -45,7 +45,7 @@ const ApplicationPage = ({ data, visaData, setVisaData }) => {
         <p>Applicant's Name: {data.firstName + data.lastName}</p>
         <p>Email: {data.email}</p>
       </div>
-      <div className="flex justify-between mt-3 text-sm">
+      <div className="flex justify-between mt-3 text-[12px] md:text-[14px]">
         <div className="font-semibold  text-gray-700">
           <p>Country: {data.country}</p>
           <p>Validity: {data.validity}</p>

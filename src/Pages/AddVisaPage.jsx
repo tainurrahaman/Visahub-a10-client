@@ -119,9 +119,9 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
           <p>Fee: ${data.fee}</p>
         </div>
         <div className="font-semibold text-gray-700">
-          <p>Application_method: {data.method}</p>
-          <p>Processing_time: {data.time}</p>
-          <p>Visa_type: {data.type}</p>
+          <p>Method: {data.method}</p>
+          <p>Time: {data.time}</p>
+          <p>Visa_Type: {data.type}</p>
         </div>
       </div>
       <div className="mt-3 flex justify-between gap-5">
@@ -157,8 +157,8 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         />
                       </div>
                     </div>
-                    <div className="flex gap-2">
-                      <div className="mb-4 w-1/2">
+                    <div className="flex flex-col md:flex-row gap-2">
+                      <div className="mb-4 w-full md:w-1/2 ">
                         <label className="block text-gray-700 font-semibold mb-2">
                           Country
                         </label>
@@ -169,7 +169,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                         />
                       </div>
-                      <div className="mb-4 w-1/2">
+                      <div className="mb-4 w-full md:w-1/2 ">
                         <label className="block text-gray-700 font-semibold mb-2">
                           Visa Type
                         </label>
@@ -182,8 +182,8 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         />
                       </div>
                     </div>
-                    <div className="flex gap-2">
-                      <div className="mb-4 w-1/2">
+                    <div className="flex  flex-col md:flex-row gap-2">
+                      <div className="mb-4 w-full md:w-1/2">
                         <label className="block text-gray-700 font-semibold mb-2">
                           Processing Time
                         </label>
@@ -194,7 +194,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                         />
                       </div>
-                      <div className="mb-4 w-1/2">
+                      <div className="mb-4 w-full md:w-1/2">
                         <label className="block text-gray-700 font-semibold mb-2">
                           Fee
                         </label>
@@ -207,8 +207,8 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                         />
                       </div>
                     </div>
-                    <div className="flex gap-2">
-                      <div className="mb-4 w-1/2">
+                    <div className="flex  flex-col md:flex-row gap-2">
+                      <div className="mb-4 w-full md:w-1/2">
                         <label className="block text-gray-700 font-semibold mb-2">
                           Application_method
                         </label>
@@ -219,7 +219,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
                           className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                         />
                       </div>
-                      <div className="mb-4 w-1/2">
+                      <div className="mb-4 w-full md:w-1/2">
                         <label className="block text-gray-700 font-semibold mb-2">
                           Validity
                         </label>

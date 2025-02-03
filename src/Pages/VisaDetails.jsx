@@ -75,7 +75,7 @@ const VisaDetails = () => {
                   alt={`${visa.name} Visa`}
                 />
               </div>
-              <div className=" px-5">
+              <div className="px-2 md:px-5">
                 <h2 className="text-xl md:text-3xl font-bold mb-2">
                   {visa.name}
                 </h2>
