@@ -12,7 +12,7 @@ const ApplicationPage = ({ data, visaData, setVisaData }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/visaApply/${id}`, {
+        fetch(`https://visahub-a10-server.vercel.app/visaApply/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

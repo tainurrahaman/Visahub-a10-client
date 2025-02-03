@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Navbar from "../Components/Navbar";
 import ApplicationPage from "./ApplicationPage";
+import { toast, ToastContainer } from "react-toastify";
 
 const VisaApplication = () => {
   const { user } = useContext(AuthContext);
@@ -12,15 +13,15 @@ const VisaApplication = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/visaApply?email=${user.email}`)
+    fetch(`https://visahub-a10-server.vercel.app/visaApply?email=${user.email}`)
       .then((response) => response.json())
       .then((data) => {
-        setVisaData(data); // Set original data
-        setFilteredVisaData(data); // Set filtered data (initially same as original)
+        setVisaData(data);
+        setFilteredVisaData(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching visa data:", error);
+        toast("Error fetching visa data:", error);
         setLoading(false);
       });
   }, [user.email]);
@@ -81,6 +82,7 @@ const VisaApplication = () => {
           ))}
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

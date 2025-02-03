@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const { loginUser, setUser, loginWithGoogle } = useContext(AuthContext);
@@ -20,7 +20,7 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
-        // console.log(user);
+
         navigate("/");
         Swal.fire({
           title: "Login Successful",
@@ -29,7 +29,7 @@ const Login = () => {
         });
       })
       .catch((error) => {
-        // console.log(error);
+        toast(error);
       });
   };
 

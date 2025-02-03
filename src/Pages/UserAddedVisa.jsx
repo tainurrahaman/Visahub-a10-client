@@ -12,7 +12,7 @@ const UserAddedVisa = () => {
 
   useEffect(() => {
     setLoading(loading);
-    fetch(`http://localhost:5000/visas?email=${user.email}`)
+    fetch(`https://visahub-a10-server.vercel.app/visas?email=${user.email}`)
       .then((response) => response.json())
       .then((data) => {
         setaddedVisaData(data);

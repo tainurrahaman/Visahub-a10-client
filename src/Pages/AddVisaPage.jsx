@@ -80,7 +80,7 @@ const AddVisaPage = ({ data, addedVisaData, setaddedVisaData }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/visas/${id}`, {
+        fetch(`https://visahub-a10-server.vercel.app/visas/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
