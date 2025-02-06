@@ -128,9 +128,14 @@ const Navbar = () => {
             </Link>
           </div>
         ) : (
-          <Link to="/login" className="btn bg-[#034833] text-white">
-            Login
-          </Link>
+          <div className="space-x-2">
+            <Link to="/signup" className="font-bold">
+              SignUp
+            </Link>
+            <Link to="/login" className="btn bg-[#034833] text-white">
+              Login
+            </Link>
+          </div>
         )}
       </div>
 
